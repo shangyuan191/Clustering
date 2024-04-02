@@ -1,4 +1,5 @@
 # Clustering
+> python my_clustering.py
 ## Experiments
 > Using DB-SCAN algorithm,and perform grid search method to find the better (eps,minPts).
 ![alt text](image.png)

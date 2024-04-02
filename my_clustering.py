@@ -120,8 +120,8 @@ def plot_before_and_after_clustering(data, before_labels, after_labels):
     plt.subplot(1, 2, 2)
     unique_labels = list(set(after_labels))
     colors = [mcolors.to_rgba(f'C{i}') for i in range(len(unique_labels))]
-    print(f"unique label = {unique_labels}")
-    print(f"colors = {colors}")
+    # print(f"unique label = {unique_labels}")
+    # print(f"colors = {colors}")
     color_dict = {label: colors[i] for i, label in enumerate(unique_labels)}
     label_legend = defaultdict(bool)
     for i in range(len(data)):
@@ -141,39 +141,54 @@ def plot_before_and_after_clustering(data, before_labels, after_labels):
 if __name__ == "__main__":
     directory="Clustering_testdata"
     file_names=os.listdir(directory)
-    print(file_names)
-    arguments=[[8,39],[8,50],[10,100],[10,100],[10,100]]
+    file_names=sorted(file_names)
+    #print(file_names)
+    arguments=[[8,39],[8,33],[7,31],[5,39],[6,37]]
     for i in range(len(file_names)):
         file_name=file_names[i]
         full_path=os.path.join(directory,file_name)
         data=read_file(full_path)
         eps=arguments[i][0]
         minPts=arguments[i][1]
-        #start_time=time.time()
-        arg=[]
-        if i==1:
-            for e in tqdm(range(5,31),desc='outer loop'):
-                for m in tqdm(range(30,81),desc='inner loop'):
-                    labels=DB_scan(data,e,m)
-                    if len(set(labels))==5:
-                        arg.append([e,m])
-                        print(f"arg = {arg}")
-                        print(f"len of data = {len(data)}")
-                        print(f"count_of_minus_ones = {labels.count(-1)}")
-            print(arg)
-        else:
-            labels=DB_scan(data,eps,minPts)
-        # end_time=time.time()
+        start_time=time.time()
+        # arg=[]
+
+        ## Grid Search
+
+        # if i>2:
+        #     for e in tqdm(range(5,31),desc='outer loop'):
+        #         for m in tqdm(range(20,101),desc='inner loop'):
+        #             labels=DB_scan(data,e,m)
+        #             unique_label_num=len(set(labels))
+        #             if unique_label_num>=4 and unique_label_num<=10:
+        #                 arg.append([e,m,unique_label_num])
+        #                 # print(f"\nlabel = {labels}")
+        #                 print(f"\ne = {e}, m = {m}")
+        #                 # print(f"len of label set = {len(set(labels))}")
+        #                 print(f"arg = {arg}")
+        #                 print(f"len of data = {len(data)}")
+        #                 print(f"count_of_minus_ones = {labels.count(-1)}")
+        #     print(f"Dataset = {file_names[i]}")
+        #     print(arg)
+        #     with open('record.txt','a') as f:
+        #         f.write(f"Dataset = {file_names[i]}\n")
+        #         for item in arg:
+        #             f.write(f"eps = {item[0]}, minPts = {item[1]}, unique label num = {unique_label_num}\n")
+        #         f.write("\n")
+        # else:
+
+        labels=DB_scan(data,eps,minPts)
+        end_time=time.time()
         # for j in range(len(data)):
         #     print(f"Data = {data[j]}")
         #     print(f"Label = {labels[j]}")
         # print(f"len of data = {len(data)}")
         # print(labels)
-        # print(f"num of labels = {len(set(labels))}")
+        print(f"\nnum of labels = {len(set(labels))}")
         # print(f"len of labels = {len(labels)}")
         # print(f"len of data = {len(data)}")
-        # print(f"Perform DB-scan clustering algorithm in {file_name} dataset spend {round(end_time-start_time,6)} sec.")    
+        print(f"Perform DB-scan clustering algorithm in {file_name} dataset spend {round(end_time-start_time,6)} sec.\n")    
         # print()
-        # plot_before_and_after_clustering(data,[-1]*len(data),labels)
+        plot_before_and_after_clustering(data,[-1]*len(data),labels)
         # input("press Enter to continue...")
         # os.system('cls' if os.name == 'nt' else 'clear')

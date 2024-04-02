@@ -1,0 +1,8 @@
+Dataset = Clustering_test4
+eps = 5, minPts = 39, unique label num = 1
+eps = 5, minPts = 40, unique label num = 1
+eps = 5, minPts = 41, unique label num = 1
+eps = 5, minPts = 49, unique label num = 1
+eps = 5, minPts = 50, unique label num = 1
+eps = 5, minPts = 51, unique label num = 1
+

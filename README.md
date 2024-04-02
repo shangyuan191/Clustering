@@ -48,8 +48,8 @@
 
 
 * ### Clusrering_test5
-    * #### eps:6
-    * #### minPts:37
-    * #### num of cluster:3 (without noise)
+    * #### eps:5
+    * #### minPts:25
+    * #### num of cluster:5 (without noise)
     * #### plot:
 ![alt text](Figure_5.png)

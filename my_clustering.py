@@ -143,7 +143,7 @@ if __name__ == "__main__":
     file_names=os.listdir(directory)
     file_names=sorted(file_names)
     #print(file_names)
-    arguments=[[8,39],[8,33],[7,31],[5,39],[6,37]]
+    arguments=[[8,39],[8,33],[7,31],[5,39],[5,25]]
     for i in range(len(file_names)):
         file_name=file_names[i]
         full_path=os.path.join(directory,file_name)
